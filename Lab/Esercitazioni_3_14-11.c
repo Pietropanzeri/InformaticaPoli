@@ -131,6 +131,23 @@ void EliminaDuplicati(Lista* L){
     return; 
 }
 
+void IntersezioneListe(const Lista* L1, const Lista* L2, Lista* LI )
+{
+    for (int  i = 0; i < L1->NumeroElementi; i++)
+    {
+        for (int j = 0; j < L2->NumeroElementi; j++)
+        {
+            if(L1->elementi[i] == L2->elementi[j]){
+                LI->elementi[(LI->NumeroElementi++)] = L1->elementi[i];
+            }
+        }
+        
+    }
+    
+    EliminaDuplicati(LI);
+
+    return;
+}
 int main () {
 
     Lista lista;
@@ -163,6 +180,21 @@ int main () {
     EliminaDuplicati(&lista);
 
     StampaLista(&lista);
+
+    Lista lista2;
+    lista2.elementi[0] = 8;
+    lista2.elementi[1] = 9;
+    lista2.elementi[2] = 33;
+    lista2.NumeroElementi = 3;
+
+    Lista listaInt;
+    listaInt.NumeroElementi = 0;
+
+
+    IntersezioneListe(&lista, &lista2, &listaInt);
+
+    printf("Intersezione: ");
+    StampaLista(&listaInt);
 
     return 0;
 }
