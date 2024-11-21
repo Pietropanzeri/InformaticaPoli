@@ -38,6 +38,15 @@ Tupla SommaeProdottoT(int a, int b){
     return ris;
 }
 
+int SommaArgs(int argc,char *argv[] ){
+    int somma = 0;
+
+    for (int i = 1; i < argc; i++)
+        somma += atoi(argv[i]);
+    
+    return somma;
+}
+
 int main (int argc, char *argv[]) {
 
     //FATTORIALE
@@ -56,8 +65,21 @@ int main (int argc, char *argv[]) {
     printf(" :>> %d\n", b);   */
 
     /*
-    Tupla a = SommaeProdottoT(3, 4); 
+    
+    val1 = atoi(argv[1]); 
+    val2 = atoi(argv[2]);
+    Tupla a = SommaeProdottoT(val1, val2); 
+
     printf(" :>> %d\n", a.a);
     printf(" :>> %d\n", a.b);*/
-    
+
+
+
+    //SommaArgs
+    /*
+    printf("Somma: %d", SommaArgs(argc, argv));
+    */
+
+
+   
 }
