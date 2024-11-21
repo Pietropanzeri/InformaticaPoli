@@ -80,7 +80,7 @@ void Calcolatrice( int argc, char* argv[]){
     
 }
 
-int main (int argc, char *argv[]) {
+int main () {
 
     //FATTORIALE
     //printf("Fattoriale: %d", Fattoriale(atoi(argv[1])));
@@ -120,6 +120,5 @@ int main (int argc, char *argv[]) {
     //Calcolatrice(_argc, _argv);
 
     
-    Calcolatrice(argc, argv);
-
+    Calcolatrice(__argc, __argv);
 }
