@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>         //x atoi
-
+#include <string.h>
 
 typedef struct 
 {
@@ -47,6 +47,39 @@ int SommaArgs(int argc,char *argv[] ){
     return somma;
 }
 
+void Calcolatrice( int argc, char* argv[]){
+
+    int tot = 0;
+    if(!strcmp(argv[1],"somma")){
+        for (int i = 2; i < argc; i++)
+        {
+            tot += atoi(argv[i]);
+        }
+        printf("Somma :>> %d\n", tot);
+        return;
+    }else if (!strcmp(argv[1],"moltiplicazione"))
+    {
+        tot = 1;
+        for (int i = 2; i < argc; i++)
+        {
+            tot *= atoi(argv[i]);
+        }
+        printf("Risultato :>> %d\n", tot);
+        return;
+    }else if (!strcmp(argv[1],"fattoriale"))
+    {
+        for (int i = 2; i < argc; i++)
+        {
+            printf("Fattoriale di %d : %d\n", atoi(argv[i]) , Fattoriale(atoi(argv[i])));
+        }
+        return;
+    }else
+    {
+        printf("scrivi meglio");
+    }
+    
+}
+
 int main (int argc, char *argv[]) {
 
     //FATTORIALE
@@ -81,5 +114,12 @@ int main (int argc, char *argv[]) {
     */
 
 
-   
+
+    //OK, QUI SE TOLGO (int argc, char *argv[]) DAL MAIN, FUNZIONA SE METTO _argc E _argv, COMPILA CORRETTAMENTE MA GLI SNIPPETS DANNO ERRORE, QUINDI è BRURTTO DA VEDERE
+    //Funziona ma è brutto
+    //Calcolatrice(_argc, _argv);
+
+    
+    Calcolatrice(argc, argv);
+
 }
