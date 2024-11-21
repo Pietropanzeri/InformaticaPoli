@@ -99,17 +99,24 @@ void TraspostaMatrice(const int matrice[][numCol], int trasposta[][numRow], int 
     return;
 }
 
+//FUNZIONA ANCHE PER LE NON QUADRATE PERCHE' HO VOLGIA CHE LO FACCIA
 int ProdottoRigaColonna(const int matrice[][numCol], int righe, int colonne, int riga, int colonna){
-    
-    int p1 = 1, p2 = 1;
-    
-    for (int i = 0; i < colonna; i++)
-        p1 *= matrice[riga][i];
-        
-    for (int i = 0; i < riga; i++)
-        p2 *= matrice[i][colonna];
+    int somma = 0, col = 0, row = 0;
 
-    return p1 + p2;
+    for (int i = 0; i < righe; i++)
+    {
+        row = i;
+        col = i;
+
+        if(i >= colonne)
+            col = 0;
+        if(i >= righe)
+            row = 0;
+            
+        somma += matrice[riga][col] * matrice[row][colonna];    
+    }
+
+    return somma;
 }
 
 int main () {
@@ -133,8 +140,6 @@ int main () {
     StampaMatrice(trasposta, col, row);
 
     printf("Prodotto riga colonna: %d", ProdottoRigaColonna(matrice, row, col, 1, 1));
-
-    
 
     return 0;
 }
