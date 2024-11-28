@@ -131,15 +131,15 @@ int main (int argc, char *argv[]) {
     AggiungiNodo(3, Lista);
     AggiungiNodo(4, Lista);
     AggiungiNodo(5, Lista);
-    StampaListaPlus(Lista, "\n");
+    StampaListaPlus(Lista, "------------\n");
 
 
     EliminaNodo(Lista, Lista->prox->prox->prox);
-    StampaListaPlus(Lista, "\n");
+    StampaListaPlus(Lista, "------------\n");
 
 
     AggiungiNodoConPosizione(Lista, 3, 88);
-    StampaListaPlus(Lista, "\n");
+    StampaListaPlus(Lista, "------------\n");
 
 
     return 0;
