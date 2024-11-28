@@ -8,12 +8,20 @@ typedef struct EL {
 
 typedef ElemDiLista * ListaDiElem;
 
+//Per esserre più chiaro:
+//ListaDiELem e ElemDiLista vengono usati entrambi nel codice, ma non hano differenza
+//sono solo per avere un idea più chiara leggendo, quando si usa ListaDiElem è per indicare il puntatore alla lista, 
+//quando si usa ElemDiLista si vuole indicare un singolo nodo.
+//(Unica differenza è che non esiste Lista.info)
+
+//N.B. che Lista->info esiste ed indica il primo valore
+
 ElemDiLista* CreaNodo(int valore){
    ElemDiLista * punt = malloc(sizeof(ElemDiLista));
 
     if (punt == NULL) {
         printf("Errore nell'allocazione della memoria.\n");
-        exit(1);  // Termina il programma se la memoria non può essere allocata
+        return NULL;  // Termina il programma se la memoria non può essere allocata
     }
     punt->info = valore;
     punt->prox = NULL;  // Il prossimo nodo è NULL (fine della lista)
@@ -37,8 +45,10 @@ void AggiungiNodo(int valore, ListaDiElem testa){
 }
 
 void StampaLista(ListaDiElem testa){
-    if(testa == NULL)
+    if(testa == NULL){
+        printf("AOOOO e' VOTA");
         return;
+     }
     
     ElemDiLista* corrente = testa;
     int i = 0;
@@ -55,29 +65,33 @@ void StampaListaPlus(ListaDiElem testa, char * s){
     printf("%s", s);
 }
 
-void EliminaNodo(ListaDiElem testa, ElemDiLista * daEliminare){
+ListaDiElem EliminaNodo(ListaDiElem testa, ElemDiLista * daEliminare){
     
     ElemDiLista* corrente = testa;
     
     if(daEliminare == corrente){
-        testa = corrente->prox;
-        return;
+        ElemDiLista * punt = corrente->prox;
+        free(corrente);
+        return punt;
     }
 
     while (corrente->prox != daEliminare)
         corrente = corrente->prox;
     
+    ElemDiLista * punt = corrente->prox;
     corrente->prox = corrente->prox->prox;
-
+    free(punt);
+    return testa;
 }
 
-void EliminaNodoPosizione(ListaDiElem testa, int indice){
+ListaDiElem EliminaNodoPosizione(ListaDiElem testa, int indice){
     
     ElemDiLista* corrente = testa;
     
     if(indice == 0){
-        testa = corrente->prox;
-        return;
+        ElemDiLista * punt = corrente->prox;
+        free(corrente);
+        return punt;
     }
 
     for (int i = 0; i < indice - 1; i++)
@@ -85,18 +99,20 @@ void EliminaNodoPosizione(ListaDiElem testa, int indice){
         corrente = corrente->prox;
     }
     
+    ElemDiLista * punt = corrente->prox;
     corrente->prox = corrente->prox->prox;
+    free(punt);
+    return testa;
 }
 
-void AggiungiNodoConPosizione(ListaDiElem testa, int pos, int valore){
+ListaDiElem AggiungiNodoConPosizione(ListaDiElem testa, int pos, int valore){
     
     ElemDiLista* nuovoNodo = CreaNodo(valore);
     ElemDiLista* corrente = testa;
 
     if(pos == 0){
         nuovoNodo->prox = corrente;
-        testa = nuovoNodo;
-        return;
+        return nuovoNodo;
     }
 
     for (int i = 0; i < pos - 1; i++){
@@ -107,40 +123,91 @@ void AggiungiNodoConPosizione(ListaDiElem testa, int pos, int valore){
 
 
     nuovoNodo->prox = corrente->prox;
-    corrente->prox = nuovoNodo;    
+    corrente->prox = nuovoNodo; 
+    return testa;   
+}
+
+ListaDiElem EliminaLista(ListaDiElem testa){
+    ElemDiLista * current = testa;
+    if (current == NULL) {
+        return NULL; 
+    }
+
+    EliminaLista(current->prox);
+    free(current); 
+    return NULL;
+}
+
+void Inverti(ElemDiLista * el1, ElemDiLista * el2){
+    int val = el1->info;
+    el1->info = el2->info;
+    el2->info = val;
+}
+
+void OrdinaListaBubble(ListaDiElem testa){
+    ElemDiLista * punti = testa;
+
+    for (punti = punti->prox; punti != NULL; punti = punti->prox)
+    {
+        for (ElemDiLista * punt = testa; punt->prox != NULL; punt = punt->prox)
+        {
+            if(punti->info < punt->info)
+                Inverti(punti, punt);
+        }
+    }
+    
+}
+
+ListaDiElem InsertSort(ListaDiElem testa, int val){
+    ElemDiLista * el = CreaNodo(val);
+    OrdinaListaBubble(testa);
+    ElemDiLista * punt = testa;
+    if(punt->info >= el->info || testa == NULL){
+        el->prox = testa;
+        return el;
+    }
+
+    while (punt->prox != NULL && punt->prox->info < el->info){        
+        punt = punt->prox;
+    }
+    if(punt->prox == NULL)
+    {
+        punt->prox = el;
+        return testa;
+    }
+    el->prox = punt->prox;
+    punt->prox = el;  
+    return testa;  
 }
 
 int main (int argc, char *argv[]) {
 
-    /*ElemDiLista * punt = malloc(sizeof(ElemDiLista));
-
-    punt->info = 1;
-    
-    ElemDiLista * punt2 = malloc(sizeof(ElemDiLista));
-
-    punt->prox = punt2;
-
-    punt2->prox = NULL;
-
-    punt2->info = 2;*/
-
-
     ListaDiElem Lista = CreaNodo(1);
 
     AggiungiNodo(2, Lista);
-    AggiungiNodo(3, Lista);
-    AggiungiNodo(4, Lista);
+    AggiungiNodo(-2, Lista);
     AggiungiNodo(5, Lista);
+    AggiungiNodo(77, Lista);
+    AggiungiNodo(9, Lista);
+    AggiungiNodo(3, Lista);
+    StampaListaPlus(Lista, "------------\n");
+
+    Lista = EliminaNodo(Lista, Lista->prox->prox->prox);
+    Lista = EliminaNodoPosizione(Lista, 0);
+
     StampaListaPlus(Lista, "------------\n");
 
 
-    EliminaNodo(Lista, Lista->prox->prox->prox);
+    Lista = AggiungiNodoConPosizione(Lista, 0, 88);
     StampaListaPlus(Lista, "------------\n");
 
-
-    AggiungiNodoConPosizione(Lista, 3, 88);
+    OrdinaListaBubble(Lista);
     StampaListaPlus(Lista, "------------\n");
 
+    Lista = InsertSort(Lista, 0);
+    StampaListaPlus(Lista, "------------\n");
+    Lista = EliminaLista(Lista);
+    StampaListaPlus(Lista, "");
 
     return 0;
 }
