@@ -50,13 +50,18 @@ void StampaLista(ListaDiElem testa){
     }    
 }
 
-ListaDiElem EliminaNodo(ListaDiElem testa, ElemDiLista * daEliminare){
+void StampaListaPlus(ListaDiElem testa, char * s){
+    StampaLista(testa);
+    printf("%s", s);
+}
+
+void EliminaNodo(ListaDiElem testa, ElemDiLista * daEliminare){
     
     ElemDiLista* corrente = testa;
     
     if(daEliminare == corrente){
         testa = corrente->prox;
-        return testa;
+        return;
     }
 
     while (corrente->prox != daEliminare)
@@ -64,11 +69,26 @@ ListaDiElem EliminaNodo(ListaDiElem testa, ElemDiLista * daEliminare){
     
     corrente->prox = corrente->prox->prox;
 
-    return corrente;
-
 }
 
-ListaDiElem AggiungiNodoConPosizione(ListaDiElem testa, int pos, int valore){
+void EliminaNodoPosizione(ListaDiElem testa, int indice){
+    
+    ElemDiLista* corrente = testa;
+    
+    if(indice == 0){
+        testa = corrente->prox;
+        return;
+    }
+
+    for (int i = 0; i < indice - 1; i++)
+    {
+        corrente = corrente->prox;
+    }
+    
+    corrente->prox = corrente->prox->prox;
+}
+
+void AggiungiNodoConPosizione(ListaDiElem testa, int pos, int valore){
     
     ElemDiLista* nuovoNodo = CreaNodo(valore);
     ElemDiLista* corrente = testa;
@@ -76,7 +96,7 @@ ListaDiElem AggiungiNodoConPosizione(ListaDiElem testa, int pos, int valore){
     if(pos == 0){
         nuovoNodo->prox = corrente;
         testa = nuovoNodo;
-        return testa;
+        return;
     }
 
     for (int i = 0; i < pos - 1; i++){
@@ -88,9 +108,6 @@ ListaDiElem AggiungiNodoConPosizione(ListaDiElem testa, int pos, int valore){
 
     nuovoNodo->prox = corrente->prox;
     corrente->prox = nuovoNodo;    
-
-    return testa;
-
 }
 
 int main (int argc, char *argv[]) {
@@ -107,16 +124,22 @@ int main (int argc, char *argv[]) {
 
     punt2->info = 2;*/
 
+
     ListaDiElem Lista = CreaNodo(1);
 
     AggiungiNodo(2, Lista);
     AggiungiNodo(3, Lista);
     AggiungiNodo(4, Lista);
     AggiungiNodo(5, Lista);
-    Lista = EliminaNodo(Lista, Lista->prox);
-    Lista = AggiungiNodoConPosizione(Lista, 1, 33);
+    StampaListaPlus(Lista, "\n");
 
-    StampaLista(Lista);
+
+    EliminaNodo(Lista, Lista->prox->prox->prox);
+    StampaListaPlus(Lista, "\n");
+
+
+    AggiungiNodoConPosizione(Lista, 3, 88);
+    StampaListaPlus(Lista, "\n");
 
 
     return 0;
