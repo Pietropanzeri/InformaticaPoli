@@ -207,6 +207,21 @@ ListaDiElem InvertiLista(ListaDiElem testa) {
     return nuovaTesta;
 }
 
+ElemDiLista * MidLista(ListaDiElem testa){
+    
+    ElemDiLista * M = testa;
+    ElemDiLista * F = testa;
+    char sg = 0;
+    while (F->prox != NULL)
+    {
+        if(sg == 1)
+            M = M->prox;
+        F = F->prox;
+        sg = 1 - sg;
+    }
+    return M;
+    
+}
 
 int main (int argc, char *argv[]) {
 
@@ -239,7 +254,10 @@ int main (int argc, char *argv[]) {
     StampaListaPlus(Lista, "------------\nInvertiLista\n");
 
     Lista = InvertiLista(Lista);
-    StampaListaPlus(Lista, "------------\nEliminaLista\n");
+    StampaListaPlus(Lista, "------------\nMdLista\n");
+
+    ElemDiLista * Mid = MidLista(Lista);
+    printf("Valore Medio: %d\n------------\nEliminaLista\n", Mid->info);
 
     Lista = EliminaLista(Lista);
     StampaLista(Lista);
