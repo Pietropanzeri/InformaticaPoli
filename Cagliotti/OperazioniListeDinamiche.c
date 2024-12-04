@@ -223,6 +223,8 @@ ElemDiLista * MidLista(ListaDiElem testa){
     
 }
 
+//Scrivere una procedura ricursiva che riordina solo i nodi con valore pari (spostando i puntatori non i valori)
+
 int main (int argc, char *argv[]) {
 
     ListaDiElem Lista = CreaNodo(1);
