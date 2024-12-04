@@ -180,6 +180,34 @@ ListaDiElem InsertSort(ListaDiElem testa, int val){
     return testa;  
 }
 
+void InvertiListaVoid(ListaDiElem * testa) {
+    if (*testa == NULL || (*testa)->prox == NULL) {
+        return;
+    }
+
+    ListaDiElem nuovaTesta = (*testa)->prox;
+    InvertiListaVoid(&nuovaTesta);
+
+    (*testa)->prox->prox = *testa;
+    (*testa)->prox = NULL;
+
+    (*testa) = nuovaTesta;
+}
+
+ListaDiElem InvertiLista(ListaDiElem testa) {
+    if (testa == NULL || testa->prox == NULL) {
+        return testa;
+    }
+
+    ListaDiElem  nuovaTesta = InvertiLista(testa->prox);
+
+    testa->prox->prox = testa;
+    testa->prox = NULL;
+
+    return nuovaTesta;
+}
+
+
 int main (int argc, char *argv[]) {
 
     ListaDiElem Lista = CreaNodo(1);
@@ -190,24 +218,31 @@ int main (int argc, char *argv[]) {
     AggiungiNodo(77, Lista);
     AggiungiNodo(9, Lista);
     AggiungiNodo(3, Lista);
-    StampaListaPlus(Lista, "------------\n");
+    StampaListaPlus(Lista, "------------\nEliminaNodo\n");
 
     Lista = EliminaNodo(Lista, Lista->prox->prox->prox);
     Lista = EliminaNodoPosizione(Lista, 0);
 
-    StampaListaPlus(Lista, "------------\n");
+    StampaListaPlus(Lista, "------------\nAggiunta di 88\n");
 
 
     Lista = AggiungiNodoConPosizione(Lista, 0, 88);
-    StampaListaPlus(Lista, "------------\n");
+    StampaListaPlus(Lista, "------------\nOrdina\n");
 
     OrdinaListaBubble(Lista);
-    StampaListaPlus(Lista, "------------\n");
+    StampaListaPlus(Lista, "------------\nInset con posizione\n");
 
     Lista = InsertSort(Lista, 0);
-    StampaListaPlus(Lista, "------------\n");
+    StampaListaPlus(Lista, "------------\nInvertiListaVoid\n");
+
+    InvertiListaVoid(&Lista);
+    StampaListaPlus(Lista, "------------\nInvertiLista\n");
+
+    Lista = InvertiLista(Lista);
+    StampaListaPlus(Lista, "------------\nEliminaLista\n");
+
     Lista = EliminaLista(Lista);
-    StampaListaPlus(Lista, "");
+    StampaLista(Lista);
 
     return 0;
 }
