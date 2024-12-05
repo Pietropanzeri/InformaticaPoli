@@ -223,6 +223,7 @@ ElemDiLista * MidLista(ListaDiElem testa){
     
 }
 
+#pragma Consegna di OrdinaElemPari 
 //Scrivere una procedura ricursiva che riordina solo i nodi con valore pari (spostando i puntatori non i valori)
 
 /*
@@ -237,6 +238,7 @@ Richiamo il metodo con la nuova testa;
 */
 
 //RIGUARDALA CHE NON HAI CAPITO
+#pragma
 void OrdinaElementiConValorePari(ListaDiElem * testa){
     ElemDiLista * prec;
     ElemDiLista * punt;
