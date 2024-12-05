@@ -225,6 +225,59 @@ ElemDiLista * MidLista(ListaDiElem testa){
 
 //Scrivere una procedura ricursiva che riordina solo i nodi con valore pari (spostando i puntatori non i valori)
 
+/*
+Prendo una sottolista della lista completa e metto il valore positivo più piccolo e lo scambio con il positivo 
+che si trova nella posizione più vicina alla testa, successivamente richiamo la funnzione con la testa che parte
+da subito dopo il valore che ho messo come minore tra i positivi :
+
+Se la lista è vuota esci;
+Lista = Nuova lista con testa uguale al primo valore positivo;
+Controllo la lista e metto il positivo minore al primo posto (scambiano di posizione gli elementi uno alla volta (for));
+Richiamo il metodo con la nuova testa;
+*/
+
+//RIGUARDALA CHE NON HAI CAPITO
+void OrdinaElementiConValorePari(ListaDiElem * testa){
+    ElemDiLista * prec;
+    ElemDiLista * punt;
+
+    ElemDiLista * sup;
+ 
+    if((*testa) == NULL || (*testa)->prox == NULL)
+        return;
+
+    if((*testa)->info  %2 == 0)
+    {
+        prec = *testa;
+        punt = (*testa)->prox;
+
+        while (punt != NULL)
+        {
+            if(punt->info % 2 == 0 && punt->info < (*testa)->info)
+            {
+                if(punt != (*testa)->prox)
+                {                    
+                    sup = (*testa)->prox; 
+                    prec->prox = *testa; 
+                    (*testa)->prox = punt->prox;
+                    punt->prox = sup; 
+                    *testa = punt;
+                }
+                else
+                {
+                    (*testa)->prox = punt->prox;
+                    punt->prox = *testa;
+                    *testa = punt;
+                }
+            }
+            prec = punt;
+            punt = punt->prox;
+        }
+    }
+    OrdinaElementiConValorePari(&((*testa)->prox));    
+}
+
+
 int main (int argc, char *argv[]) {
 
     ListaDiElem Lista = CreaNodo(1);
@@ -246,21 +299,24 @@ int main (int argc, char *argv[]) {
     Lista = AggiungiNodoConPosizione(Lista, 0, 88);
     StampaListaPlus(Lista, "------------\nOrdina\n");
 
-    OrdinaListaBubble(Lista);
-    StampaListaPlus(Lista, "------------\nInset con posizione\n");
+    //OrdinaListaBubble(Lista);
+    //StampaListaPlus(Lista, "------------\nInset con posizione\n");
 
     Lista = InsertSort(Lista, 0);
+
     StampaListaPlus(Lista, "------------\nInvertiListaVoid\n");
-
     InvertiListaVoid(&Lista);
-    StampaListaPlus(Lista, "------------\nInvertiLista\n");
 
-    Lista = InvertiLista(Lista);
+    //StampaListaPlus(Lista, "------------\nInvertiLista\n");
+    //Lista = InvertiLista(Lista);
+
     StampaListaPlus(Lista, "------------\nMdLista\n");
-
     ElemDiLista * Mid = MidLista(Lista);
-    printf("Valore Medio: %d\n------------\nEliminaLista\n", Mid->info);
 
+    printf("Valore Medio: %d\n------------\nOridinaPari\n", Mid->info);
+    OrdinaElementiConValorePari(&Lista);
+
+    StampaListaPlus(Lista, "------------\nEliminaLista\n");
     Lista = EliminaLista(Lista);
     StampaLista(Lista);
 
