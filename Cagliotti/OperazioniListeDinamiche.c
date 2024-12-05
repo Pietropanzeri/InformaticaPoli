@@ -285,36 +285,37 @@ int main (int argc, char *argv[]) {
     AggiungiNodo(2, Lista);
     AggiungiNodo(-2, Lista);
     AggiungiNodo(5, Lista);
-    AggiungiNodo(77, Lista);
+    AggiungiNodo(77, Lista);    
+    AggiungiNodo(66, Lista);
+    AggiungiNodo(44, Lista);
+    AggiungiNodo(82, Lista);
     AggiungiNodo(9, Lista);
     AggiungiNodo(3, Lista);
-    StampaListaPlus(Lista, "------------\nEliminaNodo\n");
 
+    StampaListaPlus(Lista, "------------\nEliminaNodo\n");
     Lista = EliminaNodo(Lista, Lista->prox->prox->prox);
     Lista = EliminaNodoPosizione(Lista, 0);
 
     StampaListaPlus(Lista, "------------\nAggiunta di 88\n");
-
-
     Lista = AggiungiNodoConPosizione(Lista, 0, 88);
-    StampaListaPlus(Lista, "------------\nOrdina\n");
-
-    //OrdinaListaBubble(Lista);
-    //StampaListaPlus(Lista, "------------\nInset con posizione\n");
-
-    Lista = InsertSort(Lista, 0);
 
     StampaListaPlus(Lista, "------------\nInvertiListaVoid\n");
     InvertiListaVoid(&Lista);
 
-    //StampaListaPlus(Lista, "------------\nInvertiLista\n");
-    //Lista = InvertiLista(Lista);
+    StampaListaPlus(Lista, "------------\nInvertiLista\n");
+    Lista = InvertiLista(Lista);
 
     StampaListaPlus(Lista, "------------\nMdLista\n");
     ElemDiLista * Mid = MidLista(Lista);
 
     printf("Valore Medio: %d\n------------\nOridinaPari\n", Mid->info);
     OrdinaElementiConValorePari(&Lista);
+
+    StampaListaPlus(Lista, "------------\nOrdinaBubble\n");
+    OrdinaListaBubble(Lista);
+
+    StampaListaPlus(Lista, "------------\nInset con posizione ordinata\n");
+    Lista = InsertSort(Lista, 0);
 
     StampaListaPlus(Lista, "------------\nEliminaLista\n");
     Lista = EliminaLista(Lista);
