@@ -1,0 +1,11 @@
+https://www.dropbox.com/scl/fo/083386j2k31mit581p2gy/ACLEIuarFtg22MIwNqxEsw0?rlkey=k5g1y1cvsv8538p6pi9un503i&e=3&st=o8zjffuc&dl=0
+
+
+
+Comandi:
+- Compilare
+gcc -o programma nome_file.c
+programma.exe
+
+- Start
+programma.exe (valori di argv)
