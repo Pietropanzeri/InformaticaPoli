@@ -79,7 +79,7 @@ int Funzione(int arrayA[], int arrayB[], int dimA , int dimB){
 }
 #pragma endregion
 
-int main () {
+int main (int argc, char *argv[]) {
 
 
     //Esercizio 2
@@ -91,10 +91,26 @@ int main () {
 
 
     //Esercizio 3
+    /*
     int arrayA[3] = {1, 2, 3};
     int arrayB[5] = {2, 2 ,2 ,5 ,0};
     int ris = Funzione(arrayA, arrayB, 3, 5);
+    */
+
+    //Esercizio 4
+    //Presumo che vada messo .txt nel nome, altrimenti andrebbe aggiunto i con strcat, o a mano cercando \0 e aggiungendo da lì
+    FILE* file = fopen(argv[1], "w");
+
+    for (int i = 2; i < argc; i++) // - 2 per togliere il nome del programma e il nome del file dal conto
+    {
+        fprintf(file, "%s", argv[i]);
+        if(i != (argc-1)){
+            fprintf(file, ",");
+        }
+    }
+    fclose(file);
+    
+
 
 
 }
-
