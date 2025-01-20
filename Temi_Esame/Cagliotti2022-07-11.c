@@ -12,7 +12,7 @@ typedef struct Elemento
 }Elemento;
 
 typedef Elemento * Lista;
-
+//Es 2
 Lista Funzione(int matrice[][5], int righe, int colonne){
     int i;
     int j;
@@ -43,7 +43,7 @@ Lista Funzione(int matrice[][5], int righe, int colonne){
     
 }
 
-
+//Es 4
 int MatriceBinaria(int matrice[][5]){
     int val = 0;
     int cont = 0;
@@ -109,6 +109,7 @@ int MatriceBinaria(int matrice[][5]){
     
 }
 
+//Es 3
 int Ricorsiva(){
     int next = 0;
     int numero = 0;
@@ -128,8 +129,22 @@ int Ricorsiva(){
 
 }
 
-int main(){
-    
+//Es 5
+typedef struct TipoStudente{
+    int matricola;
+    float media;
+    char tipoLaurea;
+}TipoStudente;
+
+typedef struct Studenti
+{
+    int N;
+    TipoStudente elenco[100];
+}Studenti;
+
+
+int main(int argc, char * argv[]){
+        
     //ES 4
     /*
     int matrice[5][5] = {
@@ -143,7 +158,7 @@ int main(){
 
     printf("%d", order);
     */
-   //ES 2
+    //ES 2
     /*
     int matrice[5][5] = {
         {1, 1, 1, 4, 4},
@@ -157,11 +172,34 @@ int main(){
     L = Funzione(matrice, 5, 5);
     */
 
-   //ES 3
+    //ES 3
     /*
     Ricorsiva();
     */
 
-   
+    //Es 5
+    /*
+    char * buffer = malloc(sizeof(char) * 17000);
+    Studenti studenti;
+    studenti.N = 0;
+
+    FILE * file = fopen(argv[1], "r");
+    fgets(buffer, 17000, file);
+
+    while (*buffer != '\n'){
+        buffer++; //salta (
+        sscanf(buffer, "%d", &studenti.elenco[studenti.N].matricola);
+        buffer = buffer + 8; //salta 000000)_
+        sscanf(buffer, "%f", &studenti.elenco[studenti.N].media);
+        buffer = buffer + 6; //salta 11.11_
+        studenti.elenco[studenti.N].tipoLaurea = *buffer;
+        buffer = buffer + 2;
+        studenti.N++;
+    }
+    for (int i = 0; i < studenti.N; i++)
+    {
+        printf("(%d) %.2f %c- ", studenti.elenco[i].matricola, studenti.elenco[i].media, studenti.elenco[i].tipoLaurea);
+    }
+    */
     return 0;
 }
