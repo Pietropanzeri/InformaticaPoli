@@ -109,6 +109,24 @@ int MatriceBinaria(int matrice[][5]){
     
 }
 
+int Ricorsiva(){
+    int next = 0;
+    int numero = 0;
+    printf("Inserisci un numero, chiudi con negativo\n");
+    scanf("%d", &numero);
+    printf("\n");
+    if(numero >= 0){
+        next = Ricorsiva();
+    }
+    else{
+        return numero;
+    }
+    if(next > numero)
+        printf("%d\n", next);
+
+    return numero;
+
+}
 
 int main(){
     
@@ -126,7 +144,7 @@ int main(){
     printf("%d", order);
     */
    //ES 2
-
+    /*
     int matrice[5][5] = {
         {1, 1, 1, 4, 4},
         {0, 8, 0, 6, 0},
@@ -137,7 +155,13 @@ int main(){
 
     Lista L;
     L = Funzione(matrice, 5, 5);
-    
+    */
 
+   //ES 3
+    /*
+    Ricorsiva();
+    */
+
+   
     return 0;
 }
