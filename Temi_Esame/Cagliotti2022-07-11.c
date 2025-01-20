@@ -1,6 +1,48 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define Dim 5
+#define MaxCol 256
+
+//per esrczio 2
+typedef struct Elemento
+{
+    int val;
+    struct Elemento * prox;
+}Elemento;
+
+typedef Elemento * Lista;
+
+Lista Funzione(int matrice[][5], int righe, int colonne){
+    int i;
+    int j;
+    Lista ListaMax = NULL;
+    Elemento * ElementoPrecedente = NULL;
+    for (i = 1; i < righe - 1; i++)
+    {
+        for (j = 1; j < colonne - 1; j++)
+        {
+            int a = matrice[i][j];
+            if(matrice[i][j] > matrice[i-1][j] && matrice[i][j] > matrice[i+1][j] && matrice[i][j] > matrice[i][j - 1] && matrice[i][j] > matrice[i][j +1])
+            {
+                Elemento * EL = malloc(sizeof(Elemento));
+                EL->val = matrice[i][j];
+                EL->prox = NULL;
+                if(ListaMax == NULL){
+                    ListaMax = EL;
+                    ElementoPrecedente = EL;
+                }else{
+                    ElementoPrecedente->prox = EL;
+                    ElementoPrecedente = EL;
+                }
+            }
+        }
+        
+    }
+    return ListaMax;
+    
+}
+
 
 int MatriceBinaria(int matrice[][5]){
     int val = 0;
@@ -70,6 +112,8 @@ int MatriceBinaria(int matrice[][5]){
 
 int main(){
     
+    //ES 4
+    /*
     int matrice[5][5] = {
         {1, 1, 1, 0, 0},
         {0, 0, 0, 0, 0},
@@ -77,10 +121,23 @@ int main(){
         {0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0}
     };
-
     int order = MatriceBinaria(matrice);
 
     printf("%d", order);
+    */
+   //ES 2
+
+    int matrice[5][5] = {
+        {1, 1, 1, 4, 4},
+        {0, 8, 0, 6, 0},
+        {0, 1, 0, 3, 1},
+        {0, 12, 0, 33, 0},
+        {0, 8, 0, 0, 0}
+    };
+
+    Lista L;
+    L = Funzione(matrice, 5, 5);
+    
 
     return 0;
 }

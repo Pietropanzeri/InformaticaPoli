@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 5 // Dimensione della matrice
+#define N 5 // Dimensione della matrice Es 4
+
 
 int findLargestSquare(int matrix[N][N]) {
     int largestSquare[N][N]; // Matrice ausiliaria per calcolare le dimensioni dei quadrati
@@ -38,6 +39,9 @@ int findLargestSquare(int matrix[N][N]) {
 
     return maxSize;
 }
+
+
+
 
 int main() {
     // Dichiarazione della matrice binaria
