@@ -46,7 +46,25 @@ int MatriceBinaria(int matrice[][5]){
         j = 0;
         maxcont = 0;
     }
-    return maxorder;
+    //AAAAAAAAAAAAAAAAAAAAAAAAAAAA comunquen non va se tipo ho una matrice cha ha 11100, 11000, 00000, 00000, 00000 
+    //allora piango e non ho voglia di capire come si fa, c'è sicuro un modo più semplice
+    if(maxorder > 0)
+        return maxorder;
+    else
+    {
+        for (int a = 0; a < 5; a++)
+        {
+            for (int b = 0; b < 5; b++)
+            {
+                if(matrice[a][b] == 1)
+                    return 1;
+            }
+            
+        }
+        
+    }
+    return 0;
+    
 }
 
 
@@ -54,8 +72,8 @@ int main(){
     
     int matrice[5][5] = {
         {1, 1, 1, 0, 0},
-        {1, 1, 0, 0, 0},
-        {1, 1, 1, 0, 0},
+        {0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0}
     };
