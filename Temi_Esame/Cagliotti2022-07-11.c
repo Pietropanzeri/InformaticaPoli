@@ -178,6 +178,7 @@ int main(int argc, char * argv[]){
     */
 
     //Es 5
+    //DA MODIFICARE, SI PUÒ FATE TUTTO CON UNA SOLO SCANF RIPETUTA PER OGNI STUDENTE
     /*
     char * buffer = malloc(sizeof(char) * 17000);
     Studenti studenti;
