@@ -78,7 +78,7 @@ void MatriceMax(int matrice[][5], int righe, int colonne){
 }
 
 int * Funzione(int array[], int dim){
-    int lenght = 1;
+    int lenght = 1; // va co trollato il primo forse, nonnho voglia di pensare sono in treno
     int maxlenght = 0;
     int * primoelemnto = array;
     int * start = array;
