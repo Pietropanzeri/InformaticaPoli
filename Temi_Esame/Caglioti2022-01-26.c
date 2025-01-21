@@ -43,7 +43,7 @@ hanno una qualche sorta di carattere terminatore si fanno due for per trovare la
 sia questo il caso*/
 int Funzione(int arrayA[], int arrayB[], int dimA , int dimB){ 
     int dimArrayRis = dimA*dimB;
-    int arrayRis[dimArrayRis];
+    int arrayRis[15]; // capire come fare senza sapere il 15
     int pos = 0;
     int popular, maxCont, cont;
     for (int i = 0; i < dimB; i++)
@@ -83,11 +83,11 @@ int main (int argc, char *argv[]) {
 
 
     //Esercizio 2
-    /*
+    
     Lista L = NULL;
     Risursiva(&L);
     return 0;
-    */
+    
 
 
     //Esercizio 3
@@ -99,6 +99,7 @@ int main (int argc, char *argv[]) {
 
     //Esercizio 4
     //Presumo che vada messo .txt nel nome, altrimenti andrebbe aggiunto i con strcat, o a mano cercando \0 e aggiungendo da lì
+    /*
     FILE* file = fopen(argv[1], "w");
 
     for (int i = 2; i < argc; i++) // - 2 per togliere il nome del programma e il nome del file dal conto
@@ -109,7 +110,7 @@ int main (int argc, char *argv[]) {
         }
     }
     fclose(file);
-    
+    */
 
 
 

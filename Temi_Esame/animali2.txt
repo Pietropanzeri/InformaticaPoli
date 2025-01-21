@@ -1,0 +1,4 @@
+elefante 5100.0
+giraffa 805.0
+leone 210.0
+zebra 245.0
