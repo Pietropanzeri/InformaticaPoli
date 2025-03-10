@@ -21,4 +21,4 @@ Questa è la mia repository personale per raccogliere appunti, esercizi e codice
 ---
 
 ## 📖 Appunti
-- Link agli appunti su [Notion](https://www.notion.so/POLI-14c2555b4979803e9dfef6fdd6318245?pvs=4)
+- Link agli appunti su [Notion](https://www.notion.so/Fond-Informatica-14c2555b497981709c33d4576d4007ef?pvs=4)
